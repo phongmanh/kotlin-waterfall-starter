@@ -55,6 +55,7 @@ Feature design → contract diff → tests (do they describe the right behaviour
 - [ ] New routes are inside `authenticate` unless the design says otherwise; the service checks object-level (and, where needed, role) access for the `Caller`
 - [ ] Input validated (RequestValidation and service rules); sort and filter fields from an allow-list; no SQL built from strings
 - [ ] No secrets, tokens or personal data in code, config defaults, logs, metrics labels or error responses
+- [ ] Refresh-token rotation with reuse detection has a tested grace period for a token sent twice by a reload, or a recorded reason for none ([security](security-privacy.md#authentication-and-sessions))
 - [ ] Limits in place: body size, page size, rate limits; timeouts on every outbound call
 - [ ] New personal data is in the data inventory with a retention rule; new dependencies are justified and scanned
 
