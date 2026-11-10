@@ -23,6 +23,16 @@ Applies to the deliverables of the android-sdlc (`/android-sdlc`), compose-multi
 - **Never invent** numbers, approvals, approver names or sign-off dates. Mark unknowns `TBD-<n>` and assumptions `ASSUMPTION:`, and list both in `STATUS.md`.
 - **Baselined documents.** A deliverable whose `STATUS.md` row says Approved is baselined.
   - Change it only through an approved `cr/CR-NNN-<title>.md`.
-  - The `guard-sdlc-baseline.py` hook asks the user to confirm before such an edit.
+  - The `guard-sdlc-baseline.py` hook asks the user to confirm before such an edit. Only the user can switch it off (`SDLC_GATE=off` in `.claude/settings.local.json`); the CR rule still holds when it's off.
 - **Gate decisions** go only in the `STATUS.md` gate log, and only after the approver has given them in the conversation.
+- **Handoff.** `STATUS.md` ends with a `## Handoff` section, rewritten at the end of every session and never baselined. Facts only, ≤ 15 lines (the hook injects at most 30):
+  ```markdown
+  ## Handoff
+  - **Last session:** <date> — <what got done, one line>
+  - **State:** <e.g. "G1 awaiting sign-off" · "Phase 4 PR 6 (session) in review">
+  - **Next action:** <the exact first step for the next session>
+  - **Load:** <files and sections or line ranges to read first>
+  - **Inputs:** <where external sources are cached or pinned, with versions and commits>
+  - **Waiting on user:** <decision, approval or review, or "nothing">
+  ```
 - **Keep documents short:** tables and bullets over prose; link instead of repeating.
