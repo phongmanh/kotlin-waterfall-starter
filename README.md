@@ -156,11 +156,16 @@ Claude Code can be customized with several kinds of files. They differ in **when
     - repositories or Exposed referenced in a Ktor route file (`*Routes.kt`, `*Routing.kt`, `routes/`).
 
     Only the text being written is checked, so legacy code isn't flagged.
-  - `guard-sdlc-baseline.py` (`PreToolUse` on `Edit|Write|MultiEdit`) — before an edit to an android-sdlc, compose-multiplatform-sdlc or ktor-sdlc deliverable that `STATUS.md` marks Approved, asks you to confirm (baselines change through a change request). `STATUS.md`, `rtm.md` and `cr/` are never gated.
+  - `guard-sdlc-baseline.py` (`PreToolUse` on `Edit|Write|MultiEdit`) — before an edit to an android-sdlc, compose-multiplatform-sdlc or ktor-sdlc deliverable that `STATUS.md` marks Approved, asks you to confirm (baselines change through a change request). `STATUS.md`, `rtm.md` and `cr/` are never gated. To switch the gate off yourself (for a spike, say), add `{ "env": { "SDLC_GATE": "off" } }` to the git-ignored `.claude/settings.local.json`; Claude is told never to set it.
+  - `session-context.py` (`SessionStart`) — for every `docs/sdlc/<slug>/STATUS.md`, injects the current phase, the code review mode, the next unfinished plan item and the `## Handoff` section. Claude rewrites the handoff at the end of each session, so you can `/clear` after every unit of work and the next session picks up from it (see `CLAUDE.md`, "Sessions and gates").
+- Hook tests: `python3 -m unittest discover -s .claude/hooks/test`.
 - Scripts only run once registered in `.claude/settings.json` and made executable (`chmod +x`). This repo registers them like this:
   ```json
   {
     "hooks": {
+      "SessionStart": [
+        { "hooks": [{ "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/session-context.py", "timeout": 10 }] }
+      ],
       "PreToolUse": [
         { "matcher": "Bash", "hooks": [{ "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/block-prod-db.sh" }] },
         { "matcher": "Edit|Write|MultiEdit", "hooks": [

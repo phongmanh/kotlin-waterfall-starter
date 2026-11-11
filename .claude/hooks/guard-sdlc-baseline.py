@@ -8,10 +8,15 @@ is asked to confirm. A baselined document should change only through an
 approved change request (cr/CR-NNN-*.md). STATUS.md, rtm.md and cr/ are
 living files and are never gated.
 
+The user (never Claude) can switch the gate off by setting SDLC_GATE=off,
+e.g. in the git-ignored .claude/settings.local.json:
+    { "env": { "SDLC_GATE": "off" } }
+
 Install at: .claude/hooks/guard-sdlc-baseline.py   (chmod +x)
 """
 import fnmatch
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -52,6 +57,8 @@ def is_approved(status_text, relative_path):
 
 
 def main():
+    if os.environ.get("SDLC_GATE", "").lower() == "off":
+        return 0
     try:
         path = json.load(sys.stdin).get("tool_input", {}).get("file_path", "")
     except ValueError:
@@ -69,7 +76,9 @@ def main():
 
     reason = (
         f"{relative_path} is baselined (Approved in STATUS.md). Change it only through an approved "
-        "change request (cr/CR-NNN-*.md), or confirm that this is a non-substantive fix."
+        "change request (cr/CR-NNN-*.md), or confirm that this is a non-substantive fix. Only the user "
+        "may switch this gate off (SDLC_GATE=off in .claude/settings.local.json); don't edit STATUS.md, "
+        "the hooks or the settings to get past it."
     )
     print(json.dumps({
         "hookSpecificOutput": {
