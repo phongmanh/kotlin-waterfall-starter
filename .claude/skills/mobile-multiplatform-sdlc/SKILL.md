@@ -53,7 +53,7 @@ A gated, document-driven lifecycle for an app that ships to **Android and iOS fr
 - A small feature may combine G2 and G3 into one review. **G5 is never skipped or combined**, and it covers both platforms.
 
 ## How Claude runs this workflow
-1. **Workspace.** In the target project, open `docs/sdlc/<initiative-slug>/STATUS.md`. If it exists, resume at the phase it records. If not, create it from [templates/status.md](templates/status.md).
+1. **Workspace.** In the target project, open `docs/sdlc/<initiative-slug>/STATUS.md`. If it exists, resume at the phase it records, starting from its `## Handoff`. If not, create it from [templates/status.md](templates/status.md).
 2. **Facts.** In an existing project, read:
    - `settings.gradle.kts`, `gradle/libs.versions.toml`, and the build files of the shared modules (targets, source sets, framework `baseName` and `isStatic`) and of `androidApp`;
    - the Xcode project in `iosApp/` (deployment target, bundle ID, the build phase that embeds the Kotlin framework), `Info.plist` and `PrivacyInfo.xcprivacy`;
@@ -78,6 +78,7 @@ A gated, document-driven lifecycle for an app that ships to **Android and iOS fr
 7. **Gate review.** Run the phase's exit checklist for both platforms. Present the deliverables and their status, the checklist results, open TBDs, top risks, and a recommendation: approve, approve with conditions, or rework.
 8. **STOP for sign-off.** Ask for the decision and the approver's name and role. Record both in the STATUS.md gate log and suggest a git tag (`sdlc/<slug>/G<n>`). A waiver records the accepted risk and who accepted it.
 9. **After a baseline,** every change to an approved deliverable goes through a [change request](templates/change-request.md): RTM impact analysis → decision → update the affected deliverables → re-check the affected gates.
+10. **End of session.** Finish one unit of work per session. Before stopping, update the deliverable, its row in STATUS.md's current `## Phase <n> plan`, and rewrite the `## Handoff` section from the template.
 
 **Partial use.** If the user wants a single deliverable (e.g. "write the feature design for login"), produce just that one, following its phase's guidance. Mention any missing upstream inputs, but don't force the whole lifecycle. The same goes for code: "add a notes screen to the shared module" uses the [code patterns](reference/code-patterns.md) and the [review checklist](reference/review-checklist.md) without the documents.
 

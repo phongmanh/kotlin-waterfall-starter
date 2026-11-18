@@ -63,3 +63,19 @@ A TBD that blocks a Must requirement blocks the gate.
 
 | ID | Type (TBD / ASSUMPTION / Question) | Description | Blocks gate? | Owner | Status |
 |---|---|---|---|---|---|
+
+## Phase 1 plan
+One row per unit of work, each sized for one session. Start a new `## Phase <n> plan` table when a phase starts; the SessionStart hook reads the newest one and shows its first row that isn't Done.
+
+| # | Work | Covers | Needs from the owner | Status |
+|---|---|---|---|---|
+| 1 | <e.g. Draft the brief and the FRs> | <IDs> | <decision or input, or —> | Not started |
+
+## Handoff
+<!-- Keep this the last section. Rewritten at the end of every session, never baselined. Facts only, ≤ 15 lines. -->
+- **Last session:** YYYY-MM-DD — <what got done, one line>
+- **State:** <e.g. "G1 awaiting sign-off">
+- **Next action:** <the exact first step for the next session>
+- **Load:** <files and sections to read first>
+- **Inputs:** <where external sources are cached or pinned, with versions and commits, or "none">
+- **Waiting on user:** <decision, approval or review, or "nothing">

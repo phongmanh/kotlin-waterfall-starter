@@ -50,7 +50,7 @@ A gated, document-driven lifecycle for building a native Android app in Kotlin, 
 A small feature may combine G2 and G3 into one review. **G5 is never skipped or combined.**
 
 ## How Claude runs this workflow
-1. **Workspace.** In the target project, open `docs/sdlc/<initiative-slug>/STATUS.md`. If it exists, resume at the phase it records. If not, create it from [templates/status.md](templates/status.md).
+1. **Workspace.** In the target project, open `docs/sdlc/<initiative-slug>/STATUS.md`. If it exists, resume at the phase it records, starting from its `## Handoff`. If not, create it from [templates/status.md](templates/status.md).
 2. **Facts.**
    - In an existing Android project, read `settings.gradle.kts`, `gradle/libs.versions.toml`, the module `build.gradle.kts` files, `CLAUDE.md` and `.claude/rules/`. Record the modules, `minSdk`/`targetSdk`/`compileSdk` and the stack in STATUS.md. Don't contradict them without an ADR.
    - When a backend, an API contract or a design already exists, read them as inputs:
@@ -77,6 +77,7 @@ A small feature may combine G2 and G3 into one review. **G5 is never skipped or 
 7. **Gate review.** Run the phase's exit checklist. Present the deliverables and their status, the checklist results, open TBDs, top risks, and a recommendation: approve, approve with conditions, or rework.
 8. **STOP for sign-off.** Ask for the decision and the approver's name and role. Record both in the STATUS.md gate log and suggest a git tag (`sdlc/<slug>/G<n>`). A waiver records the accepted risk and who accepted it.
 9. **After a baseline,** every change to an approved deliverable goes through a [change request](templates/change-request.md): RTM impact analysis → decision → update the affected deliverables → re-check the affected gates.
+10. **End of session.** Finish one unit of work per session. Before stopping, update the deliverable, its row in STATUS.md's current `## Phase <n> plan`, and rewrite the `## Handoff` section from the template.
 
 **Partial use.** If the user wants a single deliverable (e.g. "write the feature design for login"), produce just that one, following its phase's guidance. Mention any missing upstream inputs, but don't force the whole lifecycle.
 
