@@ -12,7 +12,7 @@
 Constraints: <team, deadline, backend, compliance>
 
 ## 2. Stack
-The default stack from the android-sdlc skill applies, except for:
+The default stack from the mobile-android-sdlc skill applies, except for:
 
 | Concern | Choice | ADR |
 |---|---|---|

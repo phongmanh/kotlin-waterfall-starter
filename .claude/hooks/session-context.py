@@ -4,7 +4,7 @@
 Tells Claude where each SDLC workspace (docs/sdlc/<slug>/STATUS.md) stands, so
 a new, cleared, resumed or compacted session continues the right work instead
 of re-reading everything. It prints the current phase, the next open item of
-the current phase plan and the "## Handoff" section, which the android-sdlc
+the current phase plan and the "## Handoff" section, which the mobile-android-sdlc
 skill rewrites at the end of every session. Stdout becomes session context.
 
 Install at: .claude/hooks/session-context.py   (chmod +x)

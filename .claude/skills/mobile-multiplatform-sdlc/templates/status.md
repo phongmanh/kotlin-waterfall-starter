@@ -1,6 +1,6 @@
 # STATUS: <Initiative name>
 
-> The control file for the Compose Multiplatform SDLC workflow (`compose-multiplatform-sdlc` skill). Claude reads it first to resume work.
+> The control file for the Compose Multiplatform SDLC workflow (`mobile-multiplatform-sdlc` skill). Claude reads it first to resume work.
 >
 > Keep it current. It's the single place for gate decisions, risks and open items.
 

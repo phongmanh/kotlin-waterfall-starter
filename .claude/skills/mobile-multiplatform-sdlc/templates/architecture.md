@@ -12,7 +12,7 @@
 Constraints: <team, deadline, backend, compliance>
 
 ## 2. Stack
-The default stack from the compose-multiplatform-sdlc skill applies, except for:
+The default stack from the mobile-multiplatform-sdlc skill applies, except for:
 
 | Concern | Choice | ADR |
 |---|---|---|

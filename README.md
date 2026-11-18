@@ -46,7 +46,7 @@ Claude Code can be customized with several kinds of files. They differ in **when
   # Domain rules
   - No android.* imports ...
   ```
-- In this repo: `naming.md` and `git.md` load in every session. The rest use `paths:` so they load only when needed: one file per layer (`app.md` for `app/` and `feature/`, `domain.md` and `data.md` for any `domain/` or `data/` folder), `testing.md` (test sources, including Kotlin Multiplatform test source sets and Ktor server tests) and `sdlc.md` (`docs/sdlc/**`, the android-sdlc, compose-multiplatform-sdlc and ktor-sdlc deliverables).
+- In this repo: `naming.md` and `git.md` load in every session. The rest use `paths:` so they load only when needed: one file per layer (`app.md` for `app/` and `feature/`, `domain.md` and `data.md` for any `domain/` or `data/` folder), `testing.md` (test sources, including Kotlin Multiplatform test source sets and Ktor server tests) and `sdlc.md` (`docs/sdlc/**`, the mobile-android-sdlc, mobile-multiplatform-sdlc and ktor-sdlc deliverables).
 
 #### Skills — `.claude/skills/`
 - A folder with a `SKILL.md` (plus optional scripts, templates, reference docs). Frontmatter `name` + `description`.
@@ -59,8 +59,8 @@ Claude Code can be customized with several kinds of files. They differ in **when
   ---
   1. Create `<Feature>UiState` sealed interface (Loading/Success/Error) ...
   ```
-- In this repo: [`android-sdlc`](.claude/skills/android-sdlc/SKILL.md) — a phase-gated waterfall lifecycle (requirements → maintenance) for native Android apps in Kotlin: Clean Architecture + MVVM, Compose, Hilt, Room, OWASP MASVS, canonical Kotlin code patterns, a PR review checklist and Google Play release. Run `/android-sdlc`, or ask Claude to plan or build an Android app or feature with waterfall.
-- In this repo: [`compose-multiplatform-sdlc`](.claude/skills/compose-multiplatform-sdlc/SKILL.md) — a phase-gated waterfall lifecycle (requirements → maintenance) for one Kotlin codebase that ships to Android and iOS: Kotlin Multiplatform + Compose Multiplatform, shared Clean Architecture + MVVM in `commonMain`, Koin, Ktor, Room KMP, a platform matrix for what stays native, iOS/Swift interop, OWASP MASVS on both platforms, and Google Play + App Store release. Run `/compose-multiplatform-sdlc`, or ask Claude to plan or build a KMP/CMP app or feature, or to bring an Android app to iOS.
+- In this repo: [`mobile-android-sdlc`](.claude/skills/mobile-android-sdlc/SKILL.md) — a phase-gated waterfall lifecycle (requirements → maintenance) for native Android apps in Kotlin: Clean Architecture + MVVM, Compose, Hilt, Room, OWASP MASVS, canonical Kotlin code patterns, a PR review checklist and Google Play release. Run `/mobile-android-sdlc`, or ask Claude to plan or build an Android app or feature with waterfall.
+- In this repo: [`mobile-multiplatform-sdlc`](.claude/skills/mobile-multiplatform-sdlc/SKILL.md) — a phase-gated waterfall lifecycle (requirements → maintenance) for one Kotlin codebase that ships to Android and iOS: Kotlin Multiplatform + Compose Multiplatform, shared Clean Architecture + MVVM in `commonMain`, Koin, Ktor, Room KMP, a platform matrix for what stays native, iOS/Swift interop, OWASP MASVS on both platforms, and Google Play + App Store release. Run `/mobile-multiplatform-sdlc`, or ask Claude to plan or build a KMP/CMP app or feature, or to bring an Android app to iOS.
 
 #### Subagents — `.claude/agents/`
 - A Markdown file with frontmatter (`name`, `description`, optional `tools`, `model`) and a system prompt in the body.
@@ -158,7 +158,7 @@ Claude Code can be customized with several kinds of files. They differ in **when
     - repositories or Exposed referenced in a Ktor route file (`*Routes.kt`, `*Routing.kt`, `routes/`).
 
     Only the text being written is checked, so legacy code isn't flagged.
-  - `guard-sdlc-baseline.py` (`PreToolUse` on `Edit|Write|MultiEdit`) — before an edit to an android-sdlc, compose-multiplatform-sdlc or ktor-sdlc deliverable that `STATUS.md` marks Approved, asks you to confirm (baselines change through a change request). `STATUS.md`, `rtm.md` and `cr/` are never gated. To switch the gate off yourself (for a spike, say), add `{ "env": { "SDLC_GATE": "off" } }` to the git-ignored `.claude/settings.local.json`; Claude is told never to set it.
+  - `guard-sdlc-baseline.py` (`PreToolUse` on `Edit|Write|MultiEdit`) — before an edit to an mobile-android-sdlc, mobile-multiplatform-sdlc or ktor-sdlc deliverable that `STATUS.md` marks Approved, asks you to confirm (baselines change through a change request). `STATUS.md`, `rtm.md` and `cr/` are never gated. To switch the gate off yourself (for a spike, say), add `{ "env": { "SDLC_GATE": "off" } }` to the git-ignored `.claude/settings.local.json`; Claude is told never to set it.
   - `session-context.py` (`SessionStart`) — for every `docs/sdlc/<slug>/STATUS.md`, injects the current phase, the code review mode, the next unfinished plan item and the `## Handoff` section. Claude rewrites the handoff at the end of each session, so you can `/clear` after every unit of work and the next session picks up from it (see `CLAUDE.md`, "Sessions and gates").
 - Hook tests: `python3 -m unittest discover -s .claude/hooks/test`.
 - Scripts only run once registered in `.claude/settings.json` and made executable (`chmod +x`). This repo registers them like this:

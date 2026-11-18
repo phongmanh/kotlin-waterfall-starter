@@ -2,7 +2,7 @@
 """Claude Code PreToolUse hook (Edit|Write|MultiEdit).
 
 Blocks new production Kotlin that breaks the project's coding and
-architecture rules (.claude/rules/, the android-sdlc, compose-multiplatform-sdlc
+architecture rules (.claude/rules/, the mobile-android-sdlc, mobile-multiplatform-sdlc
 and ktor-sdlc code patterns). Production code is src/main/ and the Kotlin
 Multiplatform source sets (src/commonMain/, src/androidMain/, src/iosMain/, ...).
 Only the text being written is checked, so existing legacy code is never
@@ -15,8 +15,8 @@ import re
 import sys
 
 RULES_HINT = (
-    ".claude/rules/ and the code-patterns.md of .claude/skills/android-sdlc, "
-    ".claude/skills/compose-multiplatform-sdlc or .claude/skills/ktor-sdlc"
+    ".claude/rules/ and the code-patterns.md of .claude/skills/mobile-android-sdlc, "
+    ".claude/skills/mobile-multiplatform-sdlc or .claude/skills/ktor-sdlc"
 )
 COMMENT_PREFIXES = ("//", "/*", "*")
 PRODUCTION_SOURCE = re.compile(r"/src/(main|\w+Main)/")

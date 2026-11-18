@@ -4,14 +4,14 @@ paths:
 ---
 # SDLC Documents
 
-Applies to the deliverables of the android-sdlc (`/android-sdlc`), compose-multiplatform-sdlc (`/compose-multiplatform-sdlc`) and ktor-sdlc (`/ktor-sdlc`) workflows under `docs/sdlc/<initiative-slug>/`.
+Applies to the deliverables of the mobile-android-sdlc (`/mobile-android-sdlc`), mobile-multiplatform-sdlc (`/mobile-multiplatform-sdlc`) and ktor-sdlc (`/ktor-sdlc`) workflows under `docs/sdlc/<initiative-slug>/`.
 
 - **Start from `STATUS.md`.** Check the current phase, and confirm the previous gate is approved before writing a later phase's deliverable.
 - **Follow the template** of the workflow that owns the workspace, keeping its section order and tables. `STATUS.md` names the skill:
   - ktor-sdlc (a Ktor backend): `.claude/skills/ktor-sdlc/templates/`;
-  - compose-multiplatform-sdlc (an Android + iOS app): `.claude/skills/compose-multiplatform-sdlc/templates/`;
-  - otherwise: `.claude/skills/android-sdlc/templates/`.
-- **Platforms.** In a compose-multiplatform-sdlc workspace, requirements, designs and tests apply to Android and iOS unless tagged `[Android]` or `[iOS]`, and every gate is checked on both.
+  - mobile-multiplatform-sdlc (an Android + iOS app): `.claude/skills/mobile-multiplatform-sdlc/templates/`;
+  - otherwise: `.claude/skills/mobile-android-sdlc/templates/`.
+- **Platforms.** In a mobile-multiplatform-sdlc workspace, requirements, designs and tests apply to Android and iOS unless tagged `[Android]` or `[iOS]`, and every gate is checked on both.
 - **API contract.** In a ktor-sdlc workspace, the OpenAPI contract (`docs/api/openapi.yaml`) is baselined at G3 with the feature designs. Changing it needs a CR, and a breaking change needs a new API version and a deprecation plan.
 - **IDs everywhere:**
   - `FR-nnn`;
