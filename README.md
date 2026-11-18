@@ -60,6 +60,7 @@ Claude Code can be customized with several kinds of files. They differ in **when
   1. Create `<Feature>UiState` sealed interface (Loading/Success/Error) ...
   ```
 - In this repo: [`android-sdlc`](.claude/skills/android-sdlc/SKILL.md) — a phase-gated waterfall lifecycle (requirements → maintenance) for native Android apps in Kotlin: Clean Architecture + MVVM, Compose, Hilt, Room, OWASP MASVS, canonical Kotlin code patterns, a PR review checklist and Google Play release. Run `/android-sdlc`, or ask Claude to plan or build an Android app or feature with waterfall.
+- In this repo: [`compose-multiplatform-sdlc`](.claude/skills/compose-multiplatform-sdlc/SKILL.md) — a phase-gated waterfall lifecycle (requirements → maintenance) for one Kotlin codebase that ships to Android and iOS: Kotlin Multiplatform + Compose Multiplatform, shared Clean Architecture + MVVM in `commonMain`, Koin, Ktor, Room KMP, a platform matrix for what stays native, iOS/Swift interop, OWASP MASVS on both platforms, and Google Play + App Store release. Run `/compose-multiplatform-sdlc`, or ask Claude to plan or build a KMP/CMP app or feature, or to bring an Android app to iOS.
 
 #### Subagents — `.claude/agents/`
 - A Markdown file with frontmatter (`name`, `description`, optional `tools`, `model`) and a system prompt in the body.
