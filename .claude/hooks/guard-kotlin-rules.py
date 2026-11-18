@@ -15,8 +15,8 @@ import re
 import sys
 
 RULES_HINT = (
-    ".claude/rules/ and the code-patterns.md of .claude/skills/mobile-android-sdlc, "
-    ".claude/skills/mobile-multiplatform-sdlc or .claude/skills/ktor-sdlc"
+    ".claude/rules/ and the code-patterns.md of the mobile-android-sdlc or "
+    "mobile-multiplatform-sdlc skill (mobile-skill plugin) or .claude/skills/ktor-sdlc"
 )
 COMMENT_PREFIXES = ("//", "/*", "*")
 PRODUCTION_SOURCE = re.compile(r"/src/(main|\w+Main)/")

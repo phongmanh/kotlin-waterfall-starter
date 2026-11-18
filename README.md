@@ -59,8 +59,10 @@ Claude Code can be customized with several kinds of files. They differ in **when
   ---
   1. Create `<Feature>UiState` sealed interface (Loading/Success/Error) ...
   ```
-- In this repo: [`mobile-android-sdlc`](.claude/skills/mobile-android-sdlc/SKILL.md) — a phase-gated waterfall lifecycle (requirements → maintenance) for native Android apps in Kotlin: Clean Architecture + MVVM, Compose, Hilt, Room, OWASP MASVS, canonical Kotlin code patterns, a PR review checklist and Google Play release. Run `/mobile-android-sdlc`, or ask Claude to plan or build an Android app or feature with waterfall.
-- In this repo: [`mobile-multiplatform-sdlc`](.claude/skills/mobile-multiplatform-sdlc/SKILL.md) — a phase-gated waterfall lifecycle (requirements → maintenance) for one Kotlin codebase that ships to Android and iOS: Kotlin Multiplatform + Compose Multiplatform, shared Clean Architecture + MVVM in `commonMain`, Koin, Ktor, Room KMP, a platform matrix for what stays native, iOS/Swift interop, OWASP MASVS on both platforms, and Google Play + App Store release. Run `/mobile-multiplatform-sdlc`, or ask Claude to plan or build a KMP/CMP app or feature, or to bring an Android app to iOS.
+- The SDLC skills come from the [mobile-skill](https://github.com/phongmanh/mobile-skill) plugin. Install it with `/plugin marketplace add phongmanh/mobile-skill`, then `/plugin install mobile-skill@mobile-skill`:
+  - `mobile-android-sdlc` — a phase-gated waterfall lifecycle (requirements → maintenance) for native Android apps in Kotlin: Clean Architecture + MVVM, Compose, Hilt, Room, OWASP MASVS, canonical Kotlin code patterns, a PR review checklist and Google Play release. Run `/mobile-skill:mobile-android-sdlc`, or ask Claude to plan or build an Android app or feature with waterfall.
+  - `mobile-multiplatform-sdlc` — the same lifecycle for one Kotlin codebase that ships to Android and iOS: Kotlin Multiplatform + Compose Multiplatform, shared Clean Architecture + MVVM in `commonMain`, Koin, Ktor, Room KMP, a platform matrix for what stays native, iOS/Swift interop, OWASP MASVS on both platforms, and Google Play + App Store release. Run `/mobile-skill:mobile-multiplatform-sdlc`.
+  - The plugin also ships `guard-sdlc-baseline.py` and `session-context.py`. This repo registers its own copies (see Hooks below), so with the plugin enabled here each one runs twice; disable one of the two registrations.
 
 #### Subagents — `.claude/agents/`
 - A Markdown file with frontmatter (`name`, `description`, optional `tools`, `model`) and a system prompt in the body.

@@ -8,7 +8,7 @@ paths:
 ---
 # Test Code
 
-Applies to test sources only, including Kotlin Multiplatform test source sets (`commonTest`, `iosTest`, `androidHostTest`, `androidDeviceTest`). Details and snippets: `.claude/skills/mobile-android-sdlc/reference/testing.md`, for Kotlin Multiplatform `.claude/skills/mobile-multiplatform-sdlc/reference/testing.md`, and for Ktor servers `.claude/skills/ktor-sdlc/reference/testing.md`.
+Applies to test sources only, including Kotlin Multiplatform test source sets (`commonTest`, `iosTest`, `androidHostTest`, `androidDeviceTest`). Details and snippets: `reference/testing.md` of the mobile-skill plugin's `mobile-android-sdlc` skill, for Kotlin Multiplatform that of its `mobile-multiplatform-sdlc` skill, and for Ktor servers `.claude/skills/ktor-sdlc/reference/testing.md`.
 
 - **Files:** one test class per class under test, `<ClassUnderTest>Test.kt`, in the same package.
 - **Structure:** Arrange–Act–Assert, one behaviour per test, no logic (`if`, loops) in tests.
