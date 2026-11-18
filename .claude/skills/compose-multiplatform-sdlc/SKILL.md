@@ -1,6 +1,7 @@
 ---
 name: compose-multiplatform-sdlc
 description: Waterfall lifecycle for an Android + iOS app or feature built with Kotlin Multiplatform and Compose Multiplatform (shared logic and UI) - requirements, architecture, detailed design, implementation, testing, Google Play and App Store release, maintenance - with phase gates, sign-offs, traceability and change control. Bundles KMP best practices (source sets, expect/actual vs interfaces, Clean Architecture + MVVM in commonMain, Compose Multiplatform + Material 3, Koin, Ktor, Room KMP, iOS/Swift interop, OWASP MASVS on both platforms, testing, performance, accessibility), canonical code patterns, a PR review checklist and deliverable templates. Use when planning, designing, building, testing or releasing a KMP/CMP app or feature for Android and iOS, when bringing an Android app to iOS, when writing those documents for a KMP project, or when the user mentions waterfall, SDLC, V-model or phase gates for a cross-platform Kotlin app.
+
 ---
 
 # Compose Multiplatform SDLC (waterfall)

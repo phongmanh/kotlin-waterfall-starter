@@ -1,6 +1,7 @@
 ---
 name: android-sdlc
 description: Waterfall lifecycle for building a native Android app or feature in Kotlin - requirements, architecture, detailed design, implementation, testing, Google Play release and maintenance - with phase gates, sign-offs, traceability and change control. Bundles Android best practices (Clean Architecture + MVVM, Jetpack Compose + Material 3, Hilt, Coroutines/Flow, Room, OWASP MASVS security, testing, performance, accessibility), canonical Kotlin code patterns, a PR review checklist and deliverable templates (requirements, architecture, ADR, feature design, test plan, release checklist). Use when planning, designing, building, testing or releasing an Android/Kotlin app or feature phase by phase, when writing any of those documents for an Android project, or when the user mentions waterfall, SDLC, V-model or phase gates for Android.
+
 ---
 
 # Android SDLC (waterfall)
