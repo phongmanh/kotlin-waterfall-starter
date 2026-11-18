@@ -59,6 +59,7 @@ Claude Code can be customized with several kinds of files. They differ in **when
   ---
   1. Create `<Feature>UiState` sealed interface (Loading/Success/Error) ...
   ```
+- In this repo: [`android-sdlc`](.claude/skills/android-sdlc/SKILL.md) — a phase-gated waterfall lifecycle (requirements → maintenance) for native Android apps in Kotlin: Clean Architecture + MVVM, Compose, Hilt, Room, OWASP MASVS, canonical Kotlin code patterns, a PR review checklist and Google Play release. Run `/android-sdlc`, or ask Claude to plan or build an Android app or feature with waterfall.
 
 #### Subagents — `.claude/agents/`
 - A Markdown file with frontmatter (`name`, `description`, optional `tools`, `model`) and a system prompt in the body.
