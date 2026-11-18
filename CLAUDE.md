@@ -4,9 +4,9 @@
 
 ## Sessions and gates
 - **Short sessions.** One unit of work per session (one deliverable draft, one feature design, one PR), then `/clear`. Before ending a session, update the deliverable and `docs/sdlc/<slug>/STATUS.md`, rewrite STATUS.md's `## Handoff` section (format in `.claude/rules/sdlc.md`), and tell the user: "Ready for `/clear`. The next session starts from the handoff."
-- **Starting after `/clear`:** the `session-context.py` SessionStart hook injects the current phase, the next plan item and the handoff. Do its next action and load only what it lists; read documents by section (`grep -n '^##' <file>` first), not whole.
+- **Starting after `/clear`:** the mobile-skill plugin's `session-context.py` SessionStart hook injects the current phase, the next plan item and the handoff. Do its next action and load only what it lists; read documents by section (`grep -n '^##' <file>` first), not whole.
 - **Cache inputs once.** External sources (backend contract, design, sibling repos) are fetched once into `docs/sdlc/<slug>/inputs/`, with source, version and commit in `inputs/README.md`; re-fetch only when the handoff says a source changed.
-- **Baseline gate.** `guard-sdlc-baseline.py` asks before an edit to a deliverable that STATUS.md marks Approved. Only the user can switch it off, with `{ "env": { "SDLC_GATE": "off" } }` in the git-ignored `.claude/settings.local.json`. Never set it yourself, and never edit STATUS.md or the hooks to get past a gate.
+- **Baseline gate.** The mobile-skill plugin's `guard-sdlc-baseline.py` hook asks before an edit to a deliverable that STATUS.md marks Approved. Only the user can switch it off, with `{ "env": { "SDLC_GATE": "off" } }` in the git-ignored `.claude/settings.local.json`. Never set it yourself, and never edit STATUS.md or the hooks to get past a gate.
 
 ## Architecture
 - Clean Architecture + MVVM, strict unidirectional data flow.

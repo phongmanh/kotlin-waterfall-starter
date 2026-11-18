@@ -62,7 +62,7 @@ Claude Code can be customized with several kinds of files. They differ in **when
 - The SDLC skills come from the [mobile-skill](https://github.com/phongmanh/mobile-skill) plugin. Install it with `/plugin marketplace add phongmanh/mobile-skill`, then `/plugin install mobile-skill@mobile-skill`:
   - `mobile-android-sdlc` — a phase-gated waterfall lifecycle (requirements → maintenance) for native Android apps in Kotlin: Clean Architecture + MVVM, Compose, Hilt, Room, OWASP MASVS, canonical Kotlin code patterns, a PR review checklist and Google Play release. Run `/mobile-skill:mobile-android-sdlc`, or ask Claude to plan or build an Android app or feature with waterfall.
   - `mobile-multiplatform-sdlc` — the same lifecycle for one Kotlin codebase that ships to Android and iOS: Kotlin Multiplatform + Compose Multiplatform, shared Clean Architecture + MVVM in `commonMain`, Koin, Ktor, Room KMP, a platform matrix for what stays native, iOS/Swift interop, OWASP MASVS on both platforms, and Google Play + App Store release. Run `/mobile-skill:mobile-multiplatform-sdlc`.
-  - The plugin also ships `guard-sdlc-baseline.py` and `session-context.py`. This repo registers its own copies (see Hooks below), so with the plugin enabled here each one runs twice; disable one of the two registrations.
+  - The plugin also brings the SDLC hooks: `guard-sdlc-baseline.py`, the baseline gate, and `session-context.py`, the session handoff (see Hooks below).
 
 #### Subagents — `.claude/agents/`
 - A Markdown file with frontmatter (`name`, `description`, optional `tools`, `model`) and a system prompt in the body.
@@ -160,21 +160,17 @@ Claude Code can be customized with several kinds of files. They differ in **when
     - repositories or Exposed referenced in a Ktor route file (`*Routes.kt`, `*Routing.kt`, `routes/`).
 
     Only the text being written is checked, so legacy code isn't flagged.
-  - `guard-sdlc-baseline.py` (`PreToolUse` on `Edit|Write|MultiEdit`) — before an edit to an mobile-android-sdlc, mobile-multiplatform-sdlc or ktor-sdlc deliverable that `STATUS.md` marks Approved, asks you to confirm (baselines change through a change request). `STATUS.md`, `rtm.md` and `cr/` are never gated. To switch the gate off yourself (for a spike, say), add `{ "env": { "SDLC_GATE": "off" } }` to the git-ignored `.claude/settings.local.json`; Claude is told never to set it.
-  - `session-context.py` (`SessionStart`) — for every `docs/sdlc/<slug>/STATUS.md`, injects the current phase, the code review mode, the next unfinished plan item and the `## Handoff` section. Claude rewrites the handoff at the end of each session, so you can `/clear` after every unit of work and the next session picks up from it (see `CLAUDE.md`, "Sessions and gates").
-- Hook tests: `python3 -m unittest discover -s .claude/hooks/test`.
+  - The SDLC hooks come with the mobile-skill plugin, not from this folder:
+    - `guard-sdlc-baseline.py` (`PreToolUse` on `Edit|Write|MultiEdit`) — before an edit to a deliverable that `STATUS.md` marks Approved, asks you to confirm (baselines change through a change request). To switch the gate off yourself (for a spike, say), add `{ "env": { "SDLC_GATE": "off" } }` to the git-ignored `.claude/settings.local.json`; Claude is told never to set it.
+    - `session-context.py` (`SessionStart`) — for every `docs/sdlc/<slug>/STATUS.md`, injects the current phase, the code review mode, the next unfinished plan item and the `## Handoff` section, so you can `/clear` after every unit of work (see `CLAUDE.md`, "Sessions and gates").
 - Scripts only run once registered in `.claude/settings.json` and made executable (`chmod +x`). This repo registers them like this:
   ```json
   {
     "hooks": {
-      "SessionStart": [
-        { "hooks": [{ "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/session-context.py", "timeout": 10 }] }
-      ],
       "PreToolUse": [
         { "matcher": "Bash", "hooks": [{ "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/block-prod-db.sh" }] },
         { "matcher": "Edit|Write|MultiEdit", "hooks": [
-          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/guard-kotlin-rules.py" },
-          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/guard-sdlc-baseline.py" }
+          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/guard-kotlin-rules.py" }
         ] }
       ],
       "Stop": [

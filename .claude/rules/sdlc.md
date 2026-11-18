@@ -23,7 +23,7 @@ Applies to the deliverables of the mobile-android-sdlc (`/mobile-skill:mobile-an
 - **Never invent** numbers, approvals, approver names or sign-off dates. Mark unknowns `TBD-<n>` and assumptions `ASSUMPTION:`, and list both in `STATUS.md`.
 - **Baselined documents.** A deliverable whose `STATUS.md` row says Approved is baselined.
   - Change it only through an approved `cr/CR-NNN-<title>.md`.
-  - The `guard-sdlc-baseline.py` hook asks the user to confirm before such an edit. Only the user can switch it off (`SDLC_GATE=off` in `.claude/settings.local.json`); the CR rule still holds when it's off.
+  - The mobile-skill plugin's `guard-sdlc-baseline.py` hook asks the user to confirm before such an edit. Only the user can switch it off (`SDLC_GATE=off` in `.claude/settings.local.json`); the CR rule still holds when it's off.
 - **Gate decisions** go only in the `STATUS.md` gate log, and only after the approver has given them in the conversation.
 - **Handoff.** `STATUS.md` ends with a `## Handoff` section, rewritten at the end of every session and never baselined. Facts only, ≤ 15 lines (the hook injects at most 30):
   ```markdown
