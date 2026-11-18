@@ -25,6 +25,7 @@ Applies to the deliverables of the mobile-android-sdlc (`/mobile-skill:mobile-an
   - Change it only through an approved `cr/CR-NNN-<title>.md`.
   - The mobile-skill plugin's `guard-sdlc-baseline.py` hook asks the user to confirm before such an edit. Only the user can switch it off (`SDLC_GATE=off` in `.claude/settings.local.json`); the CR rule still holds when it's off.
 - **Gate decisions** go only in the `STATUS.md` gate log, and only after the approver has given them in the conversation.
+- **Autopilot** sessions (the skills' `## Autopilot` section) never record gate decisions, never edit baselined documents and never push. When they need the owner, they set the plan row to `Blocked: <reason>` or the Handoff's **Waiting on user**, and stop.
 - **Handoff.** `STATUS.md` ends with a `## Handoff` section, rewritten at the end of every session and never baselined. Facts only, ≤ 15 lines (the hook injects at most 30):
   ```markdown
   ## Handoff

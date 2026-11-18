@@ -63,6 +63,7 @@ Claude Code can be customized with several kinds of files. They differ in **when
   - `mobile-android-sdlc` — a phase-gated waterfall lifecycle (requirements → maintenance) for native Android apps in Kotlin: Clean Architecture + MVVM, Compose, Hilt, Room, OWASP MASVS, canonical Kotlin code patterns, a PR review checklist and Google Play release. Run `/mobile-skill:mobile-android-sdlc`, or ask Claude to plan or build an Android app or feature with waterfall.
   - `mobile-multiplatform-sdlc` — the same lifecycle for one Kotlin codebase that ships to Android and iOS: Kotlin Multiplatform + Compose Multiplatform, shared Clean Architecture + MVVM in `commonMain`, Koin, Ktor, Room KMP, a platform matrix for what stays native, iOS/Swift interop, OWASP MASVS on both platforms, and Google Play + App Store release. Run `/mobile-skill:mobile-multiplatform-sdlc`.
   - The plugin also brings the SDLC hooks: `guard-sdlc-baseline.py`, the baseline gate, and `session-context.py`, the session handoff (see Hooks below).
+  - **Autopilot:** after scope and the first phase plan, ask Claude to "run autopilot". The plugin's `scripts/autopilot.py` starts a fresh headless session for each plan item and stops at every gate, blocker or question for you. It never pushes.
 
 #### Subagents — `.claude/agents/`
 - A Markdown file with frontmatter (`name`, `description`, optional `tools`, `model`) and a system prompt in the body.
